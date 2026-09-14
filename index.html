@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harrison Scott — Frontend Developer</title>
+  <meta name="description" content="Portfolio of Harrison Scott, a frontend developer building clean, responsive, user-focused web experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ============ EDIT YOUR LINKS HERE (also in script.js) ============ -->
+  <header class="nav">
+    <a href="#top" class="logo">HS<span>.</span></a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact" class="btn btn-small">Contact</a>
+      <button class="theme-toggle" aria-label="Toggle colour theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="mono eyebrow">&lt;hello world /&gt;</p>
+      <h1>
+        I'm Harrison Scott.<br />
+        I build <span class="accent typed" data-words="clean interfaces.|responsive websites.|React apps.|user-focused experiences.">clean interfaces.</span>
+      </h1>
+      <p class="lead">
+        Frontend Developer who cares about the details, from pixel-perfect layouts to smooth,
+        accessible interactions that work on every screen.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn">View my work</a>
+        <a href="#" class="btn btn-ghost js-linkedin" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="dots"><i></i><i></i><i></i></div>
+<pre class="mono"><span class="k">const</span> harrison = {
+  role: <span class="s">"Frontend Developer"</span>,
+  stack: [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JS"</span>, <span class="s">"React"</span>],
+  focus: <span class="s">"responsive, modern UI/UX"</span>,
+  status: <span class="s">"always learning 🚀"</span>,
+};</pre>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <h2 class="section-title"><span class="mono">01.</span> About me</h2>
+      <div class="about-grid">
+        <div>
+          <p>
+            I'm a frontend developer who likes turning ideas into interfaces people enjoy using.
+            I focus on writing clean, maintainable code and designing layouts that feel natural
+            on phones, tablets and desktops.
+          </p>
+          <p>
+            Outside the browser I build games too. I'm working on <strong>Flip Shop</strong>,
+            a game made in Godot, which has taught me a lot about game feel, UI clarity and
+            shipping something polished.
+          </p>
+          <p>
+            I'm always learning and improving, and this portfolio is the next step.
+          </p>
+        </div>
+        <ul class="stats">
+          <li><strong>4+</strong><span>Core technologies</span></li>
+          <li><strong>100%</strong><span>Responsive builds</span></li>
+          <li><strong>∞</strong><span>Things left to learn</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <h2 class="section-title"><span class="mono">02.</span> Tech &amp; skills</h2>
+      <div class="skills">
+        <article class="skill">
+          <div class="skill-icon">&lt;/&gt;</div>
+          <h3>HTML &amp; CSS</h3>
+          <p>Semantic markup, Flexbox, Grid, custom properties and animation.</p>
+        </article>
+        <article class="skill">
+          <div class="skill-icon">JS</div>
+          <h3>JavaScript</h3>
+          <p>Modern ES6+, DOM manipulation, async code and working with APIs.</p>
+        </article>
+        <article class="skill">
+          <div class="skill-icon">⚛</div>
+          <h3>React</h3>
+          <p>Component-driven UIs, hooks, state management and reusable patterns.</p>
+        </article>
+        <article class="skill">
+          <div class="skill-icon">▭</div>
+          <h3>Responsive Design</h3>
+          <p>Mobile-first layouts that look sharp at every screen size.</p>
+        </article>
+        <article class="skill">
+          <div class="skill-icon">✦</div>
+          <h3>Modern UI/UX</h3>
+          <p>Clear hierarchy, accessible colour, and interactions that feel good.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <h2 class="section-title"><span class="mono">03.</span> Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <div class="project-thumb thumb-a"><span class="mono">portfolio.v1</span></div>
+          <div class="project-body">
+            <h3>Personal Portfolio</h3>
+            <p>The site you're looking at. Hand-built, responsive, with light and dark themes, scroll animations and no frameworks.</p>
+            <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-thumb thumb-b"><span class="mono">flip_shop.godot</span></div>
+          <div class="project-body">
+            <h3>Flip Shop</h3>
+            <p>An in-progress game about buying, fixing up and flipping items. It's a lesson in UI readability, player feedback and polish.</p>
+            <ul class="tags"><li>Godot</li><li>GDScript</li><li>UI/UX</li></ul>
+          </div>
+        </article>
+        <article class="project project-soon">
+          <div class="project-thumb thumb-c"><span class="mono">next_project.jsx</span></div>
+          <div class="project-body">
+            <h3>Coming soon</h3>
+            <p>A React project is in the works. Follow me on LinkedIn to see it when it launches.</p>
+            <ul class="tags"><li>React</li><li>Responsive</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section id="journey" class="section reveal">
+      <h2 class="section-title"><span class="mono">04.</span> My journey</h2>
+      <ol class="timeline">
+        <li><span class="mono">Step 1</span><h3>Learning the foundations</h3><p>Started with HTML &amp; CSS and fell in love with building things people can see and use.</p></li>
+        <li><span class="mono">Step 2</span><h3>Bringing pages to life</h3><p>Picked up JavaScript to add interactivity, logic and dynamic content.</p></li>
+        <li><span class="mono">Step 3</span><h3>Thinking in components</h3><p>Moved to React for scalable, reusable UIs, with responsive design and UX at the core.</p></li>
+        <li class="now"><span class="mono">Now</span><h3>Building &amp; improving</h3><p>Shipping projects, launching this portfolio, and looking for my next opportunity.</p></li>
+      </ol>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact reveal">
+      <p class="mono eyebrow">05. What's next?</p>
+      <h2>Let's build something together.</h2>
+      <p class="lead">
+        I'm open to opportunities, collaborations and feedback. The fastest way to reach me is LinkedIn.
+      </p>
+      <div class="hero-cta center">
+        <a href="#" class="btn js-linkedin" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <a href="mailto:harrisonscott9970@gmail.com" class="btn btn-ghost">Say hello by email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="mono">Designed &amp; built by Harrison Scott · <span id="year"></span></p>
+    <div class="socials">
+      <a href="#" class="js-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" class="js-github" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:harrisonscott9970@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
