@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScreenSense case study — Harrison Scott</title>
+  <meta name="description" content="Case study: ScreenSense, a full-stack digital wellbeing app with a React Native frontend, FastAPI backend and machine learning recommendation engine. Final-year project by Harrison Scott." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ScreenSense case study — Harrison Scott" />
+  <meta property="og:description" content="How I built a full-stack wellbeing app with React Native, FastAPI and machine learning." />
+  <meta property="og:image" content="https://harrisonscott9970.github.io/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header class="nav">
+    <a href="index.html" class="logo" aria-label="Harrison Scott, home">HS</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#education">Education</a>
+      <a href="index.html#contact" class="btn btn-small">Contact</a>
+      <button class="theme-toggle" aria-label="Switch light or dark theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="main" class="case">
+    <a href="index.html#projects" class="back">← Back to projects</a>
+
+    <!-- INTRO -->
+    <section class="case-hero">
+      <div>
+        <p class="badge">Final-year project · awarded a first</p>
+        <h1 class="case-title">ScreenSense</h1>
+        <p class="hero-lead">
+          A mobile wellbeing app that helps students manage screen time. It combines mood check-ins,
+          journal entries and behavioural signals to give personalised suggestions, not generic advice.
+        </p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/Harrisonscott9970/ScreenSense" target="_blank" rel="noopener">View code on GitHub</a>
+        </div>
+      </div>
+      <div class="card case-art" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <p class="ph-title">How are you feeling?</p>
+          <div class="ph-moods"><span>😞</span><span>😐</span><span class="on">🙂</span><span>😄</span></div>
+          <div class="ph-card">
+            <p class="ph-label">Suggested for you</p>
+            <p class="ph-text">Take a 10-minute walk in the park</p>
+          </div>
+          <p class="ph-label">Screen time this week</p>
+          <div class="ph-bars"><i style="height:70%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:26%"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AT A GLANCE -->
+    <ul class="glance">
+      <li class="card"><span>My role</span><strong>Sole developer: design, frontend, backend &amp; ML</strong></li>
+      <li class="card"><span>Timeline</span><strong>2025 – 2026 academic year</strong></li>
+      <li class="card"><span>Platform</span><strong>Mobile (iOS &amp; Android via Expo)</strong></li>
+      <li class="card"><span>Stack</span><strong>TypeScript · React Native · Python · FastAPI · PyTorch</strong></li>
+    </ul>
+
+    <!-- PROBLEM -->
+    <section class="case-section">
+      <h2 class="section-title">The problem</h2>
+      <div class="case-grid">
+        <div class="card">
+          <p class="about-intro">Most wellbeing apps give the same advice to everyone: "take a break", "go outside".</p>
+          <p class="desc">
+            That advice ignores how someone actually feels right now, how their mood has been trending, or what
+            they've written about their day. I wanted to find out whether an app that adapts to the user's current
+            state could give more relevant support than a simple rule-based approach.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Who it's for</h3>
+          <p class="desc">Students and young adults who spend a lot of time on their devices and struggle with screen-time balance, digital fatigue or motivation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="case-section">
+      <h2 class="section-title">How it works</h2>
+      <ol class="flow">
+        <li class="card"><span class="step">1</span><h3>Mobile app</h3><p class="desc">React Native &amp; Expo app in TypeScript: mood check-ins, journal, insights and suggestions.</p></li>
+        <li class="card"><span class="step">2</span><h3>FastAPI backend</h3><p class="desc">API routes, Pydantic validation, database access and a service layer, documented with Swagger.</p></li>
+        <li class="card"><span class="step">3</span><h3>Machine learning</h3><p class="desc">Three models analyse stress, mood trends and journal text.</p></li>
+        <li class="card"><span class="step">4</span><h3>Recommendations</h3><p class="desc">An engine combines model outputs with rules to pick a personalised suggestion.</p></li>
+      </ol>
+    </section>
+
+    <!-- ML -->
+    <section class="case-section">
+      <h2 class="section-title">The machine learning</h2>
+      <div class="models">
+        <div class="card model">
+          <p class="kind">Stress classification</p>
+          <h3>Random Forest</h3>
+          <p class="desc">Uses behavioural and contextual features. I chose it because it handles mixed data well and is easier to interpret than deep learning.</p>
+          <p class="metric"><strong>~78%</strong> accuracy</p>
+        </div>
+        <div class="card model">
+          <p class="kind">Mood trend prediction</p>
+          <h3>LSTM</h3>
+          <p class="desc">Learns from a user's sequence of past moods, since how you felt earlier shapes how you'll feel next.</p>
+          <p class="metric"><strong>~0.08</strong> validation MSE</p>
+        </div>
+        <div class="card model">
+          <p class="kind">Journal distress detection</p>
+          <h3>BiLSTM + Attention</h3>
+          <p class="desc">Reads journal text in both directions, with attention to focus on the words that matter most.</p>
+          <p class="metric"><strong>~85%</strong> accuracy</p>
+        </div>
+      </div>
+      <p class="footnote">Prototype-level results on limited data. ScreenSense is a research prototype, not a medical device.</p>
+    </section>
+
+    <!-- ENGINEERING -->
+    <section class="case-section">
+      <h2 class="section-title">Engineering decisions</h2>
+      <div class="case-grid">
+        <div class="card">
+          <h3>Clean, layered structure</h3>
+          <p class="desc">I split the frontend (components, screens, hooks, services) and the backend (API, ML, models, services) into separate layers, so each part could be tested and changed on its own.</p>
+        </div>
+        <div class="card">
+          <h3>A control panel for the workflow</h3>
+          <p class="desc">Running the app, backend and model training separately was slow and error-prone, so I built a one-click control panel to start everything and retrain models.</p>
+        </div>
+        <div class="card">
+          <h3>Testing</h3>
+          <p class="desc">pytest covers API endpoints, input validation, model loading and recommendation output. The models were also checked with accuracy, F1 scores and confusion matrices.</p>
+        </div>
+        <div class="card">
+          <h3>Privacy by design</h3>
+          <p class="desc">It collects only the data it needs, stores data locally where possible, frames suggestions as supportive rather than clinical, and follows GDPR principles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGES -->
+    <section class="case-section">
+      <h2 class="section-title">Challenges &amp; what I learned</h2>
+      <div class="case-grid">
+        <div class="card highlight">
+          <h3>Rebuilding after losing work</h3>
+          <p class="desc">
+            In February, part of the project was lost and had to be rebuilt. I re-prioritised and restored the
+            core system first (backend, frontend, AI pipeline and recommendations), then used the remaining
+            time on polish and testing. The project still earned a first.
+          </p>
+        </div>
+        <div class="card">
+          <h3>What I'd do differently</h3>
+          <ul class="points">
+            <li>Check backups more often and tag stable releases earlier</li>
+            <li>Plan smaller milestones and set aside more time for final QA</li>
+            <li>Test deployment and integration risks earlier</li>
+            <li>Run a larger real-world user study</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="contact-card">
+        <h2 class="contact-title">Want to hear more?</h2>
+        <p class="contact-lead">I'm happy to walk through ScreenSense in more detail. I'm looking for graduate and junior developer roles.</p>
+        <div class="actions">
+          <a href="#" class="btn js-linkedin" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          <a href="mailto:harrisonscott9970@gmail.com" class="btn btn-outline">Email me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Designed &amp; built by Harrison Scott · Plymouth, UK · <span id="year"></span></p>
+    <div class="socials">
+      <a href="#" class="js-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" class="js-github" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:harrisonscott9970@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

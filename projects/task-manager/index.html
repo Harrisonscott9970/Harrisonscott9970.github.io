@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="StyleSheet1.css">
+   <title>Task Manager</title>
+</head>
+<body>
+    <header class="header">
+     <h1 class="TaskManagr-Title">TaskManager</h1>
+    </header>
+
+    <section class="sidesection">
+        <button class="togglebutton" onclick="togglePage('taskInput')">Switch to Task Input</button>
+        <button class="togglebutton" onclick="togglePage('calendar')">Switch to Calendar</button>
+        <button class="togglebutton" onclick="togglePage('Info')">Switch to Info</button>
+        <button class="togglebutton" onclick="saveTasks()">Save Tasks</button>
+        <button class="togglebutton" onclick="loadFile()">Import Tasks</button>
+    </section>
+
+    <section id="infoSection" class="infosection" style="display: none;">
+       <div class="infocontents">
+          <h2>Welcome to my Task Manager!</h2>
+          <p>
+              This Task Manager is a super easy-to-use dashboard where you can make tasks, set priorities, and see everything on a calendar.
+              It's perfect for people like me who need gentle reminders about assignments and social plans.
+              Here are some tips to help navigate the Task Manager:
+          </p>
+          <ul>
+              <li><strong>Keep it Simple:</strong> Break down tasks into smaller, manageable chunks.</li>
+              <li><strong>Set Priorities:</strong> Use the priority feature to focus on what's most important.</li>
+              <li><strong>Stay Consistent:</strong> Make it a habit to update your tasks regularly.</li>
+              <li><strong>Use Filters:</strong> Utilize the filters to view tasks based on categories and priorities.</li>
+              <li><strong>Utilize the Calendar:</strong> Keep track of deadlines and important dates using the calendar view.</li>
+          </ul>
+            <h2>How to use the Manager:</h2>
+          <ol>
+              <li>Start by adding tasks in the "Task Input" section. Enter the task details such as description, category, deadline, and priority, then click "Add Task".</li>
+              <li>Switch between different views using the buttons in the sidebar: Task Input, Calendar, Charts, and Info.</li>
+              <li>In the "Calendar" view, navigate through months using the navigation buttons and view your tasks visually.</li>
+              <li>Use the filters in the "Task Filters" section to narrow down tasks based on categories and priorities.</li>
+              <li>Search for specific tasks using the search bar in the "Task Filters" section.</li>
+              <li>Mark tasks as completed by checking the checkbox next to them.</li>
+              <li>Delete tasks by clicking the "Delete" button next to them.</li>
+          </ol>
+       </div>
+    </section>
+
+    <main class="main">
+       <div id="taskInput" class="taskinputBox">
+           <input type="text" id="taskInputField" placeholder="Add a task...">
+           <select id="categorySelect">
+               <option value="personal">Personal</option>
+               <option value="work">Work</option>
+           </select>
+           <input type="date" id="deadlineInput"> <!-- Input for when task is due  -->
+           <select id="prioritySelect">
+               <option value="low">Low</option>
+               <option value="medium">Medium</option>
+               <option value="high">High</option>
+           </select>
+           <button onclick="AddButton()">Add Task</button>
+        </div>
+
+        <!-- Calendar Section -->
+        <section class="calendar-section" style="display: none;">
+            <div class="calendar">
+                <div class="calendarTop">
+                    <button id="prev-month" class="MonthSelector">&lt; Previous Month</button>
+                    <span id="month-year"></span>
+                    <button id="next-month" class="MonthSelector">Next Month &gt;</button>
+                </div>
+                <div class="calendarMain">
+                    <div class="calendarweekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendardays"></div>
+                    <ul id="taskListForDay"></ul>
+                </div>
+            </div>
+        </section>
+
+        <div id="TaskFilters" class="searchbox">
+            <input type="text" id="searchInput" oninput="searchTasks()" placeholder="Search..." class="searchinput">
+        </div>
+        <ul id="taskList" class="taskListDesign"></ul>
+    </main>
+
+    <script>
+        // Task Manager functions
+        function AddButton() {
+            const inputField = document.getElementById("taskInputField");
+            const text = inputField.value.trim();
+
+            if (text !== "") {
+                const categorySelect = document.getElementById("categorySelect");
+                const selectedCategory = categorySelect.options[categorySelect.selectedIndex].value;
+                const deadlineInput = document.getElementById("deadlineInput");
+                let dueDate = "N/A";
+                if (deadlineInput.value !== "") {
+                    dueDate = new Date(deadlineInput.value).toDateString();
+                }
+
+                const prioritySelect = document.getElementById("prioritySelect");
+                const selectedPriority = prioritySelect.options[prioritySelect.selectedIndex].value;
+                const list = document.getElementById("taskList");
+                const newItem = document.createElement("li");
+                newItem.classList.add("taskitem");
+
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.addEventListener("change", function () {
+                    newItem.classList.toggle("completed", this.checked);
+                });
+                const taskText = document.createElement("span");
+                taskText.textContent = `${text} (${selectedCategory}) - Due: ${dueDate} - Priority: ${selectedPriority}`;
+                taskText.classList.add("tasktext");
+                newItem.appendChild(checkbox);
+                newItem.appendChild(taskText);
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", function () {
+                    list.removeChild(newItem);
+                });
+                newItem.appendChild(deleteButton);
+
+                list.appendChild(newItem);
+                inputField.value = "";
+            }
+        }
+
+
+        function togglePage(section) {
+            const taskInputSection = document.getElementById("taskInput");
+            const calendarSection = document.querySelector(".calendar-section");
+            const taskList = document.getElementById("taskList");
+            const searchContainer = document.getElementById("TaskFilters");
+
+            if (section === 'taskInput') {
+                taskInputSection.style.display = "block";
+                calendarSection.style.display = "none";
+                taskList.style.display = "block";
+                searchContainer.style.display = "block";
+                infoSection.style.display = "none";
+            } else if (section === 'calendar') {
+                taskInputSection.style.display = "none";
+                calendarSection.style.display = "block";
+                taskList.style.display = "none";
+                searchContainer.style.display = "none";
+                infoSection.style.display = "none";
+            } else if (section === 'Info') {
+                taskInputSection.style.display = "none";
+                calendarSection.style.display = "none";
+                taskList.style.display = "none";
+                searchContainer.style.display = "none";
+                infoSection.style.display = "block";
+            }
+        }
+
+        // Calendar functions
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let calendarDays = document.querySelector(".calendardays");
+
+        // Function to attach event listeners to calendar cells
+        function AddEventListeners() {
+            const calendarDays = document.querySelector(".calendardays");
+            const calendarCells = calendarDays.querySelectorAll(".calendar-day");
+
+            // Add event listener to each calendar cell
+            calendarCells.forEach(cell => {
+                cell.addEventListener("click", function () {
+                    const day = parseInt(cell.textContent);
+                    const tasksForDay = FindTaskDate(day);
+
+                    // Display tasks for the selected day
+                    displayTasksDate(tasksForDay);
+                });
+            });
+        }
+
+        // Function to render the calendar
+        function DisplayCalendar() {
+            // Update the current month and year display
+            document.getElementById("month-year").textContent = new Date(currentYear, currentMonth).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const startDay = new Date(currentYear, currentMonth, 1).getDay();
+
+            calendarDays.innerHTML = "";
+
+            // Add empty cells for the days before the start day
+            for (let i = 0; i < startDay; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("empty-cell");
+                calendarDays.appendChild(cell);
+            }
+
+            // Add days of the month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const cell = document.createElement("div");
+                cell.textContent = i;
+                cell.classList.add("calendar-day");
+                if (i === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+                    cell.classList.add("current-day");
+                }
+                calendarDays.appendChild(cell);
+            }
+
+            // Attach event listeners to the newly generated cells
+            AddEventListeners();
+        }
+
+        // Initial rendering
+        DisplayCalendar();
+
+        // Function to handle navigation to previous month
+        document.querySelector("#prev-month").addEventListener("click", function () {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear -= 1;
+            } else {
+                currentMonth -= 1;
+            }
+            DisplayCalendar(); // Render the calendar after changing the month
+        });
+
+        // Function to handle navigation to next month
+        document.querySelector("#next-month").addEventListener("click", function () {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear += 1;
+            } else {
+                currentMonth += 1;
+            }
+            DisplayCalendar(); // Render the calendar after changing the month
+        });
+
+        // Function to get tasks for a specific day
+        function FindTaskDate(day) {
+            const tasks = [];
+            const list = document.getElementById("taskList").getElementsByTagName("li");
+
+            for (const item of list) {
+                const taskText = item.querySelector(".tasktext").textContent;
+                const dueDateString = taskText.match(/Due: (.*) -/)[1];
+                const dueDate = new Date(dueDateString);
+                if (dueDate.getDate() === day && dueDate.getMonth() === currentMonth && dueDate.getFullYear() === currentYear) {
+                    tasks.push(taskText);
+                }
+            }
+            return tasks;
+        }
+
+        // Function to display tasks for the selected day
+        function displayTasksDate(tasks) {
+            const taskListForDay = document.getElementById("taskListForDay");
+            taskListForDay.innerHTML = "";
+
+            if (tasks.length === 0) {
+                taskListForDay.textContent = "No tasks for this day";
+            } else {
+                tasks.forEach(task => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = task;
+                    taskListForDay.appendChild(listItem);
+                });
+            }
+        }
+        // Function to Search for Tasks
+        function searchTasks() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const list = document.getElementById("taskList");
+            const items = list.getElementsByTagName("li");
+
+            for (const item of items) {
+                const taskText = item.textContent.toLowerCase();
+                    if (taskText.includes(searchTerm)) {
+                        item.style.display = "block";
+                }   else {
+                        item.style.display = "none";
+                }
+            }
+        }
+        //Retrives and Saves tasks
+        function saveTasks() {
+            const tasks = retrieveTasks();
+            saveFile(tasks);
+        }
+
+        function retrieveTasks() {
+            const taskElements = document.querySelectorAll("#taskList .taskitem");
+            const tasks = [];
+            taskElements.forEach(taskElement => {
+                const text = taskElement.querySelector(".tasktext").textContent;
+                tasks.push(text);
+            });
+            return tasks;
+        }
+
+        function saveFile(tasks) {
+          const taskJSON = JSON.stringify(tasks);
+          const blob = new Blob([taskJSON], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'tasks.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+
+        function loadFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function (event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const taskJSON = event.target.result;
+                    try {
+                       const loadedTasks = JSON.parse(taskJSON);
+                       renderLoadedTasks(loadedTasks);
+                    }catch (error) {
+                       console.error('Error adding JSON:', error);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        function renderLoadedTasks(tasks) {
+            const list = document.getElementById("taskList");
+            // Clear existing tasks
+            list.innerHTML = "";
+            // Render loaded tasks
+            tasks.forEach(task => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("taskitem");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.addEventListener("change", function () {
+                    listItem.classList.toggle("completed", this.checked);
+                });
+                const taskText = document.createElement("span");
+                taskText.textContent = task;
+                taskText.classList.add("tasktext");
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", function () {
+                    list.removeChild(listItem);
+                });
+                listItem.appendChild(checkbox);
+                listItem.appendChild(taskText);
+                listItem.appendChild(deleteButton);
+                list.appendChild(listItem);
+            });
+        }
+    </script>
+
+    <style>
+        /* Add style for completed tasks */
+        .completed {
+            text-decoration: line-through;
+            color: #767676e5;
+        }
+        html,
+        body {
+            color: ghostwhite;
+            background-color: rgb(50, 50, 90);
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            height: 100px;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .TaskManagr-Title {
+            font-size: 36px;
+            color: black;
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        /* Main Section Styles */
+        .main {
+            background-color: rgb(50, 50, 90);
+            padding: 15px;
+            margin-left: 160px;
+        }
+
+        /* Side Section Styles */
+        .sidesection {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #151515;
+            padding-top: 20px;
+        }
+
+            .sidesection button {
+                border-radius: 7px; /* Adjust the border-radius value as per your preference */
+                margin-bottom: 7px; /* Add some margin between buttons */
+                margin-left: 7px;
+                color: white;
+                background-color: transparent; /* Remove the background color */
+                border: 1px solid white; /* Add a border to maintain button visibility */
+                padding: 5px 10px;
+            }
+
+        /* Task Input Box Styles */
+        .taskinputBox {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex; /* Add flex display */
+            flex-direction: column; /* Stack child elements vertically */
+        }
+
+            .taskinputBox input[type="text"],
+            .taskinputBox input[type="date"],
+            .taskinputBox select,
+            .taskinputBox button {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+
+            .taskinputBox button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+                margin-top: auto;
+            }
+
+        .taskListDesign {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            .taskListDesign .taskitem {
+                background-color: #27293D;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .taskListDesign .taskitem .tasktext {
+                    flex-grow: 1;
+                    margin-right: 10px;
+                }
+
+                .taskListDesign .taskitem button {
+                    background-color: #FF5733;
+                    color: white;
+                    border: none;
+                    padding: 8px 15px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+        .calendar {
+            height: 80vh;
+            width: 80vw;
+            background-color: mediumpurple;
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid white;
+            box-shadow: var(--shadow);
+        }
+
+        .calendarTop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+            padding: 20px;
+        }
+
+        .calendarweekdays {
+            height: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            margin-left: -65px;
+            font-weight: 600;
+            font-size: 25px;
+            display: grid;
+            place-items: center;
+        }
+
+        .calendardays {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto; /* defines the line names and track sizing functions of the grid columns */
+            gap: 3px; /* Reduce the gap between grid items */
+            color: var(--color-txt);
+            border-bottom: 1px solid white;
+        }
+
+            .calendardays div {
+                width: 200px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                cursor: pointer;
+                border: 0.5px solid white;
+                background-color: #5f4bb6;
+                color: #f2f2f2;
+                border-radius: 3px;
+            }
+
+                .calendardays div:hover {
+                    background-color: #3c258b;
+                }
+
+        .calendarMain {
+            position: relative;
+        }
+
+        #taskListForDay {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 200px; /* Set a maximum height */
+            background-color: #27293D;
+            border-radius: 0 0 5px 5px;
+            border: 1px solid #ccc;
+            border-top: none;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+            #taskListForDay li {
+                color: #FFF;
+                margin-bottom: 5px;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: rgb(50, 50, 90);
+            }
+
+                #taskListForDay li:last-child {
+                    margin-bottom: 0;
+                }
+
+        .searchinput {
+            width: 180px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .searchbox {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-left: 88px;
+        }
+
+        .togglebutton {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px; /* Adjusted padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px; /* Adjusted font size */
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 6px; /* Adjusted border radius */
+            transition: background-color 0.3s ease;
+        }
+
+            .togglebutton:hover {
+                background-color: #f6f5f57c;
+            }
+
+        .MonthSelector {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: right;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+            .MonthSelector:hover {
+                background-color: #ffffff7f;
+            }
+
+        .infosection {
+            padding: 15px;
+            margin: 20px;
+            margin-left: 175px;
+            border: 1px solid #ccc;
+            background-color: rgb(87, 87, 157);
+            color: #cacaca;
+        }
+
+        .infocontents {
+            padding-left: 10px; /* Add left padding to move the text a little to the right */
+        }
+    </style>
+</body>
+</html>
