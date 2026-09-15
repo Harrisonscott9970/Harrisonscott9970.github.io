@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harrison Scott — Frontend Developer</title>
-  <meta name="description" content="Portfolio of Harrison Scott, a frontend developer building clean, responsive, user-focused web experiences." />
+  <title>Harrison Scott — Frontend &amp; Full-Stack Developer</title>
+  <meta name="description" content="Harrison Scott: Computer Science graduate (2:1, University of Plymouth) building responsive web interfaces, full-stack apps and real-time graphics. Open to graduate and junior developer roles." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#journey">Journey</a>
+      <a href="#education">Education</a>
       <a href="#contact" class="btn btn-small">Contact</a>
       <button class="theme-toggle" aria-label="Switch light or dark theme">◐</button>
     </nav>
@@ -31,16 +31,16 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
-      <p class="eyebrow mono">Frontend Developer</p>
+      <p class="status" data-inspect><span class="dot" aria-hidden="true"></span>Open to graduate &amp; junior developer roles</p>
       <h1 class="hero-name" data-inspect>Harrison<br />Scott</h1>
       <p class="hero-lead">
-        I build clean, responsive interfaces with HTML, CSS, JavaScript and React,
-        and I care about every detail, down to the pixel.
+        Frontend &amp; full-stack developer and Computer Science graduate (2:1) from the
+        University of Plymouth. I build responsive, user-focused software, from first idea to deployment.
       </p>
       <div class="actions">
         <a href="#projects" class="btn" data-inspect>See my projects</a>
         <a href="#" class="btn btn-outline js-linkedin" target="_blank" rel="noopener" data-inspect>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.450-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
           Connect on LinkedIn
         </a>
       </div>
@@ -54,19 +54,22 @@
       <div class="about">
         <div class="about-text">
           <p>
-            I'm a frontend developer who likes turning ideas into interfaces people enjoy using.
-            I write clean, maintainable code and design layouts that feel natural on phones,
-            tablets and desktops.
+            I'm a Computer Science graduate who likes building software people enjoy using.
+            My strongest ground is the web: clean HTML, CSS and JavaScript, responsive layouts,
+            and interfaces that stay clear on any screen.
           </p>
           <p>
-            Outside the browser I build games too. <strong>Flip Shop</strong>, made in Godot,
-            has taught me a lot about UI clarity, player feedback and finishing things properly.
+            At university I went further: a full-stack wellbeing app with a React Native frontend,
+            a FastAPI backend and machine learning; a website for a real client; and real-time 3D
+            graphics in OpenGL. I'm happiest taking a project from concept all the way to something
+            that ships.
           </p>
         </div>
-        <dl class="now" data-inspect>
-          <div><dt class="mono">Building</dt><dd>Flip Shop, a game in Godot</dd></div>
-          <div><dt class="mono">Learning</dt><dd>Advanced React patterns</dd></div>
-          <div><dt class="mono">Open to</dt><dd>Frontend roles &amp; freelance work</dd></div>
+        <dl class="facts" data-inspect>
+          <div><dt class="mono">Based in</dt><dd>Plymouth, United Kingdom</dd></div>
+          <div><dt class="mono">Degree</dt><dd>BSc (Hons) Computer Science, 2:1 · 2026</dd></div>
+          <div><dt class="mono">Looking for</dt><dd>Graduate / junior roles: front-end, full-stack or software engineering</dd></div>
+          <div><dt class="mono">Work</dt><dd>Remote, hybrid or Plymouth · full UK right to work</dd></div>
         </dl>
       </div>
     </section>
@@ -75,61 +78,128 @@
     <section id="skills" class="section">
       <p class="eyebrow mono">#skills</p>
       <h2 class="section-title" data-inspect>Tech &amp; skills</h2>
-      <ul class="skills">
-        <li data-inspect><h3>HTML &amp; CSS</h3><p>Semantic markup, Flexbox, Grid, custom properties and animation.</p></li>
-        <li data-inspect><h3>JavaScript</h3><p>Modern ES6+, DOM work, async code and APIs.</p></li>
-        <li data-inspect><h3>React</h3><p>Component-driven UIs, hooks and reusable patterns.</p></li>
-        <li data-inspect><h3>Responsive design</h3><p>Mobile-first layouts that hold up at every screen size.</p></li>
-        <li data-inspect><h3>Modern UI/UX</h3><p>Clear hierarchy, accessible colour and interactions that feel good.</p></li>
-      </ul>
+      <div class="skills">
+        <div class="skill-group" data-inspect>
+          <h3>Frontend</h3>
+          <ul class="chips mono"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>React Native</li><li>Expo</li><li>Responsive design</li></ul>
+        </div>
+        <div class="skill-group" data-inspect>
+          <h3>Backend &amp; ML</h3>
+          <ul class="chips mono"><li>Python</li><li>FastAPI</li><li>REST APIs</li><li>pytest</li><li>PyTorch</li><li>scikit-learn</li></ul>
+        </div>
+        <div class="skill-group" data-inspect>
+          <h3>Graphics &amp; games</h3>
+          <ul class="chips mono"><li>C++</li><li>OpenGL / GLSL</li><li>C#</li><li>Unity</li><li>VR</li></ul>
+        </div>
+        <div class="skill-group" data-inspect>
+          <h3>Ways of working</h3>
+          <ul class="chips mono"><li>Git &amp; GitHub</li><li>Debugging</li><li>Software lifecycle</li><li>Client delivery</li><li>Teamwork</li></ul>
+        </div>
+      </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="section">
       <p class="eyebrow mono">#projects</p>
       <h2 class="section-title" data-inspect>Projects</h2>
+
+      <article class="featured" data-inspect>
+        <div class="featured-art" aria-hidden="true">
+          <div class="arch arch-app"><span class="mono">React Native app</span>
+            <div class="arch arch-api"><span class="mono">FastAPI backend</span>
+              <div class="arch arch-ml"><span class="mono">ML models</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="featured-body">
+          <p class="eyebrow mono">Final-year project · awarded a first</p>
+          <h3>ScreenSense</h3>
+          <p>
+            A mobile digital-wellbeing app that helps students manage screen time. It combines
+            mood check-ins, journal entries and behavioural signals to give personalised suggestions,
+            not generic "take a break" advice.
+          </p>
+          <ul class="points">
+            <li>TypeScript mobile frontend built with React Native &amp; Expo</li>
+            <li>FastAPI backend with validation, a database and Swagger docs</li>
+            <li>ML models for stress, mood trends and journal analysis, feeding a recommendation engine</li>
+            <li>Privacy-conscious design with pytest test coverage</li>
+          </ul>
+          <p class="tags mono">TypeScript · React Native · Python · FastAPI · PyTorch</p>
+          <a class="text-link" href="https://github.com/Harrisonscott9970/ScreenSense" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </article>
+
       <div class="projects">
         <article class="project" data-inspect>
-          <div class="thumb thumb-box" aria-hidden="true">
-            <div class="bx-m"><div class="bx-p"><div class="bx-c">portfolio</div></div></div>
-          </div>
-          <div class="project-body">
-            <h3>Personal portfolio</h3>
-            <p>This site. Hand-coded and responsive, with a light and dark theme and a devtools-style inspector you can try.</p>
-            <p class="tags mono">HTML · CSS · JavaScript</p>
-          </div>
+          <p class="kind mono">Client project</p>
+          <h3>Driving instructor website</h3>
+          <p>A fully responsive website for a local driving instructor. I handled planning, design and deployment, and delivered to the client's brief.</p>
+          <p class="tags mono">HTML · CSS · JavaScript</p>
         </article>
         <article class="project" data-inspect>
-          <div class="thumb thumb-game" aria-hidden="true">
-            <span class="mono">flip_shop.godot</span>
-            <span class="badge mono">In progress</span>
-          </div>
-          <div class="project-body">
-            <h3>Flip Shop</h3>
-            <p>A game about buying, fixing up and flipping items, with a focus on readable UI, player feedback and polish.</p>
-            <p class="tags mono">Godot · GDScript · UI/UX</p>
-          </div>
+          <p class="kind mono">Real-time graphics</p>
+          <h3>TON 618: Stellar Expedition</h3>
+          <p>An interactive OpenGL scene around a black hole, with HDR bloom, shadow mapping, instanced particles, PBR shading and a playable EVA mission.</p>
+          <p class="tags mono">C++ · OpenGL · GLSL</p>
+          <p class="links"><a class="text-link" href="https://www.youtube.com/watch?v=mOBasS6IQgU" target="_blank" rel="noopener">Watch demo →</a><a class="text-link" href="https://github.com/Harrisonscott9970/OpenGl-BlackholeCW2" target="_blank" rel="noopener">Code →</a></p>
         </article>
-        <article class="project project-next" data-inspect>
-          <div class="thumb thumb-next" aria-hidden="true"><span class="mono">&lt;NextProject /&gt;</span></div>
-          <div class="project-body">
-            <h3>Next up: a React app</h3>
-            <p>In the works now. Follow me on LinkedIn to see it when it launches.</p>
-            <p class="tags mono">React · Responsive</p>
-          </div>
+        <article class="project" data-inspect>
+          <p class="kind mono">Web app</p>
+          <h3>Task Manager</h3>
+          <p>Add tasks with due dates and priorities, search by category, and plan ahead in a calendar view.</p>
+          <p class="tags mono">HTML · CSS · JavaScript</p>
+          <p class="links"><a class="text-link" href="https://github.com/Harrisonscott9970/Task-Manager" target="_blank" rel="noopener">Code →</a></p>
+        </article>
+        <article class="project" data-inspect>
+          <p class="kind mono">Procedural 3D</p>
+          <h3>Space Explorer</h3>
+          <p>A no-engine C++ prototype: procedurally generated planets with biomes, a free-flight camera, custom shaders and a HUD.</p>
+          <p class="tags mono">C++ · OpenGL 4 · Assimp</p>
+          <p class="links"><a class="text-link" href="https://github.com/Harrisonscott9970/Space-Explorer---Procedural-OpenGL-CW" target="_blank" rel="noopener">Code →</a></p>
+        </article>
+        <article class="project" data-inspect>
+          <p class="kind mono">VR prototype</p>
+          <h3>MotionVR</h3>
+          <p>A VR rehabilitation prototype, with a therapist view on the PC and session data logged to CSV for review.</p>
+          <p class="tags mono">C# · Unity · VR</p>
+          <p class="links"><a class="text-link" href="https://github.com/Harrisonscott9970/MotionVR" target="_blank" rel="noopener">Code →</a></p>
+        </article>
+        <article class="project" data-inspect>
+          <p class="kind mono">Arcade game</p>
+          <h3>Rune Breaker</h3>
+          <p>A brick-breaker with rune-themed levels, six power-ups, particle effects and increasing difficulty.</p>
+          <p class="tags mono">C · Game logic</p>
+          <p class="links"><a class="text-link" href="https://www.youtube.com/watch?v=vzA1ItHZsrs" target="_blank" rel="noopener">Watch demo →</a><a class="text-link" href="https://github.com/Harrisonscott9970/RuneBreaker" target="_blank" rel="noopener">Code →</a></p>
         </article>
       </div>
     </section>
 
-    <!-- JOURNEY -->
-    <section id="journey" class="section">
-      <p class="eyebrow mono">#journey</p>
-      <h2 class="section-title" data-inspect>My journey</h2>
-      <ol class="journey">
-        <li data-inspect><h3>Foundations</h3><p>Started with HTML &amp; CSS and got hooked on building things people can see and use.</p></li>
-        <li data-inspect><h3>Interactivity</h3><p>Picked up JavaScript to add logic and dynamic content.</p></li>
-        <li data-inspect><h3>Components</h3><p>Moved to React for scalable, reusable UIs, with responsive design at the core.</p></li>
-        <li class="is-now" data-inspect><h3>Now</h3><p>Shipping projects, launching this portfolio and looking for what's next.</p></li>
+    <!-- EDUCATION & EXPERIENCE -->
+    <section id="education" class="section">
+      <p class="eyebrow mono">#education</p>
+      <h2 class="section-title" data-inspect>Education &amp; experience</h2>
+      <ol class="timeline">
+        <li data-inspect>
+          <p class="when mono">Jan – Mar 2022</p>
+          <div><h3>Volunteer, Habitat for Humanity</h3><p class="where">Cincinnati, USA</p><p>Supported community events and helped visitors, building teamwork and communication skills in a customer-facing role.</p></div>
+        </li>
+        <li data-inspect>
+          <p class="when mono">2022 – 2023</p>
+          <div><h3>Foundation year, Computer Science</h3><p class="where">University of Plymouth</p><p>Programming, mathematics for computing, data mining and robotics.</p></div>
+        </li>
+        <li data-inspect>
+          <p class="when mono">2023 – 2025</p>
+          <div><h3>BSc Computer Science, Stages 1 &amp; 2</h3><p class="where">University of Plymouth</p><p>Software engineering, algorithms &amp; data structures, AI, information management, game development and a team-based computing group project.</p></div>
+        </li>
+        <li data-inspect>
+          <p class="when mono">2025 – 2026</p>
+          <div><h3>Final year</h3><p class="where">University of Plymouth</p><p>Computing project (ScreenSense), games graphics pipelines, immersive game technologies, and product development &amp; delivery.</p></div>
+        </li>
+        <li class="is-now" data-inspect>
+          <p class="when mono">June 2026</p>
+          <div><h3>Graduated BSc (Hons) Computer Science, 2:1</h3><p class="where">University of Plymouth</p><p>Now looking for my first graduate or junior developer role.</p></div>
+        </li>
       </ol>
     </section>
 
@@ -137,7 +207,10 @@
     <section id="contact" class="section contact">
       <p class="eyebrow mono">#contact</p>
       <h2 class="contact-title" data-inspect>Let's work together.</h2>
-      <p class="contact-lead">I'm open to roles, collaborations and feedback. LinkedIn is the fastest way to reach me.</p>
+      <p class="contact-lead">
+        I'm looking for graduate and junior developer roles: remote, hybrid or in Plymouth.
+        LinkedIn is the fastest way to reach me.
+      </p>
       <div class="actions">
         <a href="#" class="btn js-linkedin" target="_blank" rel="noopener" data-inspect>Connect on LinkedIn</a>
         <a href="mailto:harrisonscott9970@gmail.com" class="btn btn-outline" data-inspect>Email me</a>
@@ -146,7 +219,7 @@
   </main>
 
   <footer class="footer">
-    <p class="mono">Designed &amp; built by Harrison Scott · <span id="year"></span></p>
+    <p class="mono">Designed &amp; built by Harrison Scott · Plymouth, UK · <span id="year"></span></p>
     <div class="socials">
       <a href="#" class="js-linkedin" target="_blank" rel="noopener">LinkedIn</a>
       <a href="#" class="js-github" target="_blank" rel="noopener">GitHub</a>
