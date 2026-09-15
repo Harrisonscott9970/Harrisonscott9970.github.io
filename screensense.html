@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ScreenSense case study — Harrison Scott</title>
-  <meta name="description" content="Case study: ScreenSense, a full-stack digital wellbeing app with a React Native frontend, FastAPI backend and machine learning recommendation engine. Final-year project by Harrison Scott." />
+  <meta name="description" content="Case study: ScreenSense, a full-stack digital wellbeing app with a React Native frontend, FastAPI backend and explainable machine learning. Final-year project by Harrison Scott, awarded a first." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="ScreenSense case study — Harrison Scott" />
-  <meta property="og:description" content="How I built a full-stack wellbeing app with React Native, FastAPI and machine learning." />
+  <meta property="og:description" content="How I built a full-stack wellbeing app with React Native, FastAPI and explainable machine learning." />
   <meta property="og:image" content="https://harrisonscott9970.github.io/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,10 +24,10 @@
       <span></span><span></span>
     </button>
     <nav class="nav-links" id="nav-links">
-      <a href="index.html#about">About</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#education">Education</a>
+      <a href="#tour">App tour</a>
+      <a href="#ml">Machine learning</a>
+      <a href="#testing">Testing</a>
+      <a href="index.html#projects">All projects</a>
       <a href="index.html#contact" class="btn btn-small">Contact</a>
       <button class="theme-toggle" aria-label="Switch light or dark theme">◐</button>
     </nav>
@@ -42,34 +42,28 @@
         <p class="badge">Final-year project · awarded a first</p>
         <h1 class="case-title">ScreenSense</h1>
         <p class="hero-lead">
-          A mobile wellbeing app that helps students manage screen time. It combines mood check-ins,
-          journal entries and behavioural signals to give personalised suggestions, not generic advice.
+          A mobile wellbeing app that helps students understand their screen time, mood and stress, then
+          suggests a small, personalised next step. It uses explainable machine learning and a safety-first design.
         </p>
         <div class="actions">
           <a class="btn" href="https://github.com/Harrisonscott9970/ScreenSense" target="_blank" rel="noopener">View code on GitHub</a>
+          <a class="btn btn-outline" href="#tour">See the app</a>
         </div>
       </div>
-      <div class="card case-art" aria-hidden="true">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <p class="ph-title">How are you feeling?</p>
-          <div class="ph-moods"><span>😞</span><span>😐</span><span class="on">🙂</span><span>😄</span></div>
-          <div class="ph-card">
-            <p class="ph-label">Suggested for you</p>
-            <p class="ph-text">Take a 10-minute walk in the park</p>
-          </div>
-          <p class="ph-label">Screen time this week</p>
-          <div class="ph-bars"><i style="height:70%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:26%"></i></div>
+      <div class="card case-art">
+        <div class="shots">
+          <img class="app-shot" src="img/screensense/checkin.jpg" alt="Check-in screen: How are you feeling today? Step 1 of 7" width="399" height="814" />
+          <img class="app-shot" src="img/screensense/mood.jpg" alt="Mood selection screen based on Russell's circumplex model" width="399" height="814" />
         </div>
       </div>
     </section>
 
     <!-- AT A GLANCE -->
     <ul class="glance">
-      <li class="card"><span>My role</span><strong>Sole developer: design, frontend, backend &amp; ML</strong></li>
+      <li class="card"><span>My role</span><strong>Sole developer: research, design, frontend, backend &amp; ML</strong></li>
       <li class="card"><span>Timeline</span><strong>2025 – 2026 academic year</strong></li>
       <li class="card"><span>Platform</span><strong>Mobile (iOS &amp; Android via Expo)</strong></li>
-      <li class="card"><span>Stack</span><strong>TypeScript · React Native · Python · FastAPI · PyTorch</strong></li>
+      <li class="card"><span>Stack</span><strong>TypeScript · React Native · Python · FastAPI · PyTorch · scikit-learn</strong></li>
     </ul>
 
     <!-- PROBLEM -->
@@ -77,77 +71,169 @@
       <h2 class="section-title">The problem</h2>
       <div class="case-grid">
         <div class="card">
-          <p class="about-intro">Most wellbeing apps give the same advice to everyone: "take a break", "go outside".</p>
+          <p class="about-intro">Most wellbeing apps give everyone the same advice, or leave you to tag your own mood.</p>
           <p class="desc">
-            That advice ignores how someone actually feels right now, how their mood has been trending, or what
-            they've written about their day. I wanted to find out whether an app that adapts to the user's current
-            state could give more relevant support than a simple rule-based approach.
+            Mood diaries like Daylio rely on manual tagging, and chatbot apps follow scripts. Neither looks at how
+            you feel right now, your recent trend, what you've written, or your context (time, weather, location).
+            They also rarely explain <em>why</em> they suggest something. ScreenSense combines those signals and
+            shows its reasoning.
           </p>
         </div>
         <div class="card">
           <h3>Who it's for</h3>
-          <p class="desc">Students and young adults who spend a lot of time on their devices and struggle with screen-time balance, digital fatigue or motivation.</p>
+          <p class="desc">Students and young adults who spend a lot of time on their devices and struggle with screen-time balance, digital fatigue or stress.</p>
+          <h3 style="margin-top:18px">Design principle</h3>
+          <p class="desc">Supportive, not clinical. Suggestions are optional, privacy is visible, and the app never presents itself as a diagnosis.</p>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- APP TOUR -->
+    <section class="case-section" id="tour">
+      <h2 class="section-title">App tour</h2>
+      <p class="desc" style="margin:-12px 0 20px">A 7-step check-in that takes about 2 minutes, then insights that build up over time. Scroll sideways to see more →</p>
+      <div class="card">
+        <div class="gallery" tabindex="0" aria-label="ScreenSense screenshots">
+          <figure><img class="app-shot" src="img/screensense/checkin.jpg" alt="Check-in welcome screen" width="399" height="814" loading="lazy" /><figcaption>1. Start a check-in</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/mood.jpg" alt="Mood picker with options like calm, content, energised" width="399" height="814" loading="lazy" /><figcaption>2. Pick a mood (Russell's circumplex model)</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/body-scan.jpg" alt="Body scan: where do you feel this?" width="399" height="814" loading="lazy" /><figcaption>3. Body scan: where do you feel it?</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/thought-patterns.jpg" alt="CBT thought patterns selection" width="399" height="814" loading="lazy" /><figcaption>4. CBT-style thought patterns</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/journal.jpg" alt="Optional journal entry screen" width="399" height="814" loading="lazy" /><figcaption>5. Optional journal, analysed by AI</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/places-map.jpg" alt="Map of nearby calm places matched to mood" width="399" height="814" loading="lazy" /><figcaption>6. Places matched to your mood</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/weekly-summary.jpg" alt="Weekly summary with stress, sleep and screen time" width="420" height="857" loading="lazy" /><figcaption>7. Weekly summary</figcaption></figure>
+          <figure><img class="app-shot" src="img/screensense/insights-trends.jpg" alt="Insights screen with LSTM next-mood prediction" width="399" height="814" loading="lazy" /><figcaption>8. Trends &amp; next-mood prediction</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
     <section class="case-section">
       <h2 class="section-title">How it works</h2>
-      <ol class="flow">
-        <li class="card"><span class="step">1</span><h3>Mobile app</h3><p class="desc">React Native &amp; Expo app in TypeScript: mood check-ins, journal, insights and suggestions.</p></li>
-        <li class="card"><span class="step">2</span><h3>FastAPI backend</h3><p class="desc">API routes, Pydantic validation, database access and a service layer, documented with Swagger.</p></li>
-        <li class="card"><span class="step">3</span><h3>Machine learning</h3><p class="desc">Three models analyse stress, mood trends and journal text.</p></li>
-        <li class="card"><span class="step">4</span><h3>Recommendations</h3><p class="desc">An engine combines model outputs with rules to pick a personalised suggestion.</p></li>
-      </ol>
+      <div class="case-grid">
+        <figure class="card diagram">
+          <img src="img/screensense/architecture.jpg" alt="System architecture: React Native app, FastAPI backend, ML layer, data storage and external context services" width="1200" height="900" loading="lazy" />
+          <figcaption>System architecture: the app, API, ML layer, storage and context services are kept separate so each can be tested on its own.</figcaption>
+        </figure>
+        <figure class="card diagram">
+          <img src="img/screensense/user-journey.jpg" alt="User journey from opening the app to a saved recommendation" width="1200" height="900" loading="lazy" />
+          <figcaption>User journey: check-in → FastAPI → AI analysis → context → recommendation → insights.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- ML -->
-    <section class="case-section">
+    <section class="case-section" id="ml">
       <h2 class="section-title">The machine learning</h2>
       <div class="models">
         <div class="card model">
           <p class="kind">Stress classification</p>
           <h3>Random Forest</h3>
-          <p class="desc">Uses behavioural and contextual features. I chose it because it handles mixed data well and is easier to interpret than deep learning.</p>
-          <p class="metric"><strong>~78%</strong> accuracy</p>
+          <p class="desc">Uses behavioural and check-in data such as screen time, sleep and mood. It suits tabular data and supports SHAP explanations.</p>
+          <p class="metric"><strong>79.8%</strong> weighted F1 on held-out test data</p>
         </div>
         <div class="card model">
-          <p class="kind">Mood trend prediction</p>
+          <p class="kind">Mood trend</p>
           <h3>LSTM</h3>
-          <p class="desc">Learns from a user's sequence of past moods, since how you felt earlier shapes how you'll feel next.</p>
-          <p class="metric"><strong>~0.08</strong> validation MSE</p>
+          <p class="desc">Learns from the sequence of past check-ins to predict the direction of your next mood, shown on the insights screen.</p>
+          <p class="metric">Working prototype. Needs longer real-world data before stronger claims.</p>
         </div>
         <div class="card model">
-          <p class="kind">Journal distress detection</p>
-          <h3>BiLSTM + Attention</h3>
-          <p class="desc">Reads journal text in both directions, with attention to focus on the words that matter most.</p>
-          <p class="metric"><strong>~85%</strong> accuracy</p>
+          <p class="kind">Journal analysis</p>
+          <h3>BiLSTM + Attention &amp; VADER</h3>
+          <p class="desc">Reads optional journal text to spot distress. VADER sentiment adds a second, lightweight signal.</p>
+          <p class="metric">Working prototype with a keyword fallback if the model is unavailable.</p>
         </div>
       </div>
-      <p class="footnote">Prototype-level results on limited data. ScreenSense is a research prototype, not a medical device.</p>
+
+      <ul class="glance" style="margin-top:24px">
+        <li class="card"><span>Cross-validated F1</span><strong style="font-size:1.4rem">81.5%</strong></li>
+        <li class="card"><span>Out-of-bag accuracy</span><strong style="font-size:1.4rem">81.4%</strong></li>
+        <li class="card"><span>Cohen's κ</span><strong style="font-size:1.4rem">0.679</strong><span style="margin-top:4px">substantial agreement</span></li>
+        <li class="card"><span>Bootstrap 95% CI</span><strong style="font-size:1.4rem">78.1 – 81.4%</strong><span style="margin-top:4px">1,000 resamples</span></li>
+      </ul>
+
+      <div class="case-grid" style="margin-top:24px">
+        <figure class="card diagram">
+          <img src="img/screensense/ml-pipeline.jpg" alt="Machine learning pipeline from inputs through preprocessing, models, trust and robustness checks to outputs" width="1200" height="900" loading="lazy" />
+          <figcaption>ML pipeline, including SHAP explanations, conformal prediction for uncertainty and an Isolation Forest check for implausible inputs.</figcaption>
+        </figure>
+        <div class="card">
+          <h3>Honest about the numbers</h3>
+          <p class="desc">
+            I report realistic held-out results, not the inflated accuracy from early experiments. The 1.7-point gap
+            between cross-validated and test F1 suggests mild overfitting, which is expected because most training
+            data was synthetic.
+          </p>
+          <h3 style="margin-top:18px">Built for trust</h3>
+          <ul class="points">
+            <li><strong>SHAP</strong> shows which factors drove each stress prediction</li>
+            <li><strong>Conformal prediction</strong> means uncertain results are worded carefully</li>
+            <li><strong>Isolation Forest</strong> filters out physiologically implausible inputs</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- ENGINEERING -->
+    <!-- SAFETY -->
     <section class="case-section">
-      <h2 class="section-title">Engineering decisions</h2>
+      <h2 class="section-title">Safe recommendations</h2>
+      <div class="case-grid">
+        <figure class="card diagram">
+          <img src="img/screensense/recommendation-flow.jpg" alt="Recommendation engine flowchart with crisis check, rule-based fusion and fallback" width="1200" height="900" loading="lazy" />
+          <figcaption>The recommendation engine checks for high distress first, then combines model outputs with context and safe wording rules.</figcaption>
+        </figure>
+        <div class="card">
+          <h3>Informed by NHS stepped care</h3>
+          <p class="desc">
+            Suggestions scale with need. For example, high stress with low energy gets a short breathing or grounding
+            activity, and low mood on a nice day gets a walk to a nearby calm place. If journal distress is high, the
+            app shows trusted crisis support (including Samaritans), and an <strong>SOS</strong> button is always one tap away.
+          </p>
+          <h3 style="margin-top:18px">Fails safely</h3>
+          <p class="desc">If a model or context data is unavailable, the API returns a safe general recommendation instead of crashing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTING -->
+    <section class="case-section" id="testing">
+      <h2 class="section-title">Testing &amp; user feedback</h2>
+      <div class="case-grid">
+        <figure class="card diagram">
+          <img src="img/screensense/tests-passing.jpg" alt="Terminal output showing 37 pytest tests passing" width="1158" height="746" loading="lazy" />
+          <figcaption><strong>37 passing pytest tests</strong> across 11 test classes, covering feature vectors, stress prediction, sentiment edge cases, BiLSTM fallbacks, the recommendation engine and ensemble scoring.</figcaption>
+        </figure>
+        <div class="card">
+          <h3>Usability testing with 3 users</h3>
+          <p class="desc" style="margin-bottom:12px">Testers ranged from technically confident to non-technical.</p>
+          <ul class="points">
+            <li>A step-by-step check-in was easier to follow than one long form, so I kept the staged flow</li>
+            <li>Testers wanted advice that never sounds like a diagnosis, so I strengthened the safe, stepped-care wording</li>
+            <li>A non-technical tester wanted to know why data was collected, so I made the privacy messages more visible</li>
+            <li>Next: stronger onboarding, clearer feedback after submitting, and more variety in recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY -->
+    <section class="case-section">
+      <h2 class="section-title">Privacy by design</h2>
       <div class="case-grid">
         <div class="card">
-          <h3>Clean, layered structure</h3>
-          <p class="desc">I split the frontend (components, screens, hooks, services) and the backend (API, ML, models, services) into separate layers, so each part could be tested and changed on its own.</p>
+          <h3>Minimum data, stored locally</h3>
+          <p class="desc">
+            The app collects only what recommendations need and stores data locally in the prototype. Journal and
+            context data are optional, and users can export their full history as CSV. It follows GDPR principles
+            of data minimisation, purpose limitation and consent.
+          </p>
+          <h3 style="margin-top:18px">What I'd add for production</h3>
+          <p class="desc">Stronger encryption, authentication and access controls, plus a larger real-world study before any claims about wellbeing impact.</p>
         </div>
-        <div class="card">
-          <h3>A control panel for the workflow</h3>
-          <p class="desc">Running the app, backend and model training separately was slow and error-prone, so I built a one-click control panel to start everything and retrain models.</p>
-        </div>
-        <div class="card">
-          <h3>Testing</h3>
-          <p class="desc">pytest covers API endpoints, input validation, model loading and recommendation output. The models were also checked with accuracy, F1 scores and confusion matrices.</p>
-        </div>
-        <div class="card">
-          <h3>Privacy by design</h3>
-          <p class="desc">It collects only the data it needs, stores data locally where possible, frames suggestions as supportive rather than clinical, and follows GDPR principles.</p>
-        </div>
+        <figure class="card diagram">
+          <img src="img/screensense/privacy-flow.jpg" alt="Privacy and data handling flow from user input to history" width="1200" height="900" loading="lazy" />
+          <figcaption>Privacy and data handling flow.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -168,8 +254,8 @@
           <ul class="points">
             <li>Check backups more often and tag stable releases earlier</li>
             <li>Plan smaller milestones and set aside more time for final QA</li>
-            <li>Test deployment and integration risks earlier</li>
-            <li>Run a larger real-world user study</li>
+            <li>Collect real (not synthetic) training data earlier</li>
+            <li>Run a larger, longer user study</li>
           </ul>
         </div>
       </div>
@@ -182,6 +268,7 @@
         <div class="actions">
           <a href="#" class="btn js-linkedin" target="_blank" rel="noopener">Connect on LinkedIn</a>
           <a href="mailto:harrisonscott9970@gmail.com" class="btn btn-outline">Email me</a>
+          <a href="Harrison-Scott-CV.pdf" class="btn btn-outline" download>Download CV</a>
         </div>
       </div>
     </section>

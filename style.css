@@ -294,6 +294,22 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -0.0
 .project-thumb-blank span { font-family: var(--display); font-weight: 500; font-size: 1.05rem; color: var(--signal); }
 .featured-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
+/* Real app screenshots */
+.shots { display: flex; justify-content: center; align-items: flex-start; gap: 18px; text-decoration: none; }
+.app-shot {
+  display: block; width: min(44%, 210px); height: auto;
+  border-radius: 26px; border: 5px solid #141b2d; background: #141b2d;
+  box-shadow: 0 24px 50px -22px rgba(20, 27, 45, .55);
+}
+.shots .app-shot + .app-shot { margin-top: 44px; }
+.gallery { display: flex; gap: 18px; overflow-x: auto; padding: 4px 4px 18px; scroll-snap-type: x mandatory; }
+.gallery figure { flex: 0 0 200px; scroll-snap-align: start; }
+.gallery .app-shot { width: 100%; }
+.gallery figcaption { font-size: .88rem; color: var(--muted); margin-top: 10px; text-align: center; }
+.diagram { padding: 12px; }
+.diagram img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.diagram figcaption { font-size: .88rem; color: var(--muted); padding: 10px 6px 2px; }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr; }

@@ -137,19 +137,10 @@
       <h2 class="section-title">Projects</h2>
 
       <article class="card featured">
-        <div class="featured-art" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <p class="ph-title">How are you feeling?</p>
-            <div class="ph-moods"><span>😞</span><span>😐</span><span class="on">🙂</span><span>😄</span></div>
-            <div class="ph-card">
-              <p class="ph-label">Suggested for you</p>
-              <p class="ph-text">Take a 10-minute walk in the park</p>
-            </div>
-            <p class="ph-label">Screen time this week</p>
-            <div class="ph-bars"><i style="height:70%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:26%"></i></div>
-          </div>
-        </div>
+        <a class="featured-art shots" href="screensense.html" aria-label="Read the ScreenSense case study">
+          <img class="app-shot" src="img/screensense/checkin.jpg" alt="ScreenSense check-in screen asking how are you feeling today" width="399" height="814" loading="lazy" />
+          <img class="app-shot" src="img/screensense/weekly-summary.jpg" alt="ScreenSense weekly summary with stress, sleep and screen-time stats" width="420" height="857" loading="lazy" />
+        </a>
         <div class="featured-body">
           <p class="badge">Final-year project · awarded a first</p>
           <h3>ScreenSense</h3>
@@ -161,8 +152,8 @@
           <ul class="points">
             <li>TypeScript mobile frontend built with React Native &amp; Expo</li>
             <li>FastAPI backend with validation, a database and Swagger docs</li>
-            <li>ML models for stress, mood trends and journal analysis, feeding a recommendation engine</li>
-            <li>Privacy-conscious design with pytest test coverage</li>
+            <li>Explainable ML: Random Forest stress model with 79.8% F1 on held-out data, plus LSTM mood trends and journal analysis</li>
+            <li>37 passing pytest tests, usability-tested with real users, and safety-first stepped-care recommendations</li>
           </ul>
           <ul class="chips"><li>TypeScript</li><li>React Native</li><li>Python</li><li>FastAPI</li><li>PyTorch</li></ul>
           <div class="featured-actions">
