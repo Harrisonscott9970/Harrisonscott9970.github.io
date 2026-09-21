@@ -197,6 +197,16 @@ h1, h2, h3 {
 .points li::before { content: "✓"; position: absolute; left: 0; color: var(--sea); font-weight: 700; }
 .featured-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
+/* Second featured card: Flip Shop (image gallery on the right) */
+.featured-game { grid-template-columns: 1fr 1fr; }
+.featured-game .featured-art {
+  order: 2; padding: 18px; align-content: center; place-items: stretch;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.game-shots img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 6px; border: 1.5px solid var(--rule); }
+.game-shots .main { grid-column: 1 / -1; display: block; }
+.game-shots .main img { border-color: var(--ink); }
+
 /* Real app screenshots */
 .shots { display: flex; justify-content: center; align-items: flex-start; gap: 18px; text-decoration: none; }
 .app-shot {
@@ -303,6 +313,7 @@ h1, h2, h3 {
   .hero { grid-template-columns: 1fr; gap: 32px; }
   .profile { max-width: 520px; }
   .about, .featured { grid-template-columns: 1fr; }
+  .featured-game .featured-art { order: 0; }
   .projects { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 680px) {
