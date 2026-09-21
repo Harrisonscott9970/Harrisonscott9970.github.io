@@ -107,9 +107,42 @@ h1, h2, h3 {
 .nav-links { display: flex; align-items: center; gap: 26px; font-size: .95rem; }
 .nav-links a:not(.btn) { text-decoration: none; color: var(--muted); font-weight: 700; }
 .nav-links a:not(.btn):hover { color: var(--ink); }
+/* Theme toggle: Smeaton's Tower. Click and the lantern sweeps a beam round */
 .theme-toggle {
-  width: 38px; height: 38px; border-radius: 8px; cursor: pointer;
-  background: transparent; color: var(--ink); border: 1.5px solid var(--rule); font-size: 1rem;
+  position: relative; width: 40px; height: 40px; padding: 0; border-radius: 8px; cursor: pointer;
+  display: grid; place-items: center; overflow: visible;
+  background: transparent; border: 1.5px solid var(--rule);
+}
+.theme-toggle:hover { border-color: var(--ink); }
+.lighthouse { position: relative; z-index: 1; display: block; width: 24px; height: 30px; }
+.lh-dark { fill: var(--ink); }
+.lh-bars { fill: none; stroke: var(--ink); stroke-width: .9; }
+.lh-outline { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linejoin: round; }
+.lh-white { fill: #fbfcfa; }
+.lh-red { fill: #d9412b; }
+.lantern { fill: #e3eae5; stroke: var(--ink); stroke-width: .9; transition: fill .3s ease; }
+.theme-toggle.flash .lantern { fill: #ffd23f; }
+.beam {
+  position: absolute; left: 50%; top: 29%; width: 300px; height: 300px; border-radius: 50%;
+  pointer-events: none; opacity: 0; transform: translate(-50%, -50%);
+  background: conic-gradient(
+    rgba(255, 210, 63, 0) 0deg, rgba(255, 210, 63, .85) 14deg, rgba(255, 210, 63, 0) 30deg,
+    rgba(255, 210, 63, 0) 180deg, rgba(255, 210, 63, .85) 194deg, rgba(255, 210, 63, 0) 210deg,
+    rgba(255, 210, 63, 0) 360deg);
+  -webkit-mask-image: radial-gradient(circle, #000 6%, rgba(0, 0, 0, .55) 38%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 6%, rgba(0, 0, 0, .55) 38%, transparent 70%);
+}
+.theme-toggle.flash .beam { animation: sweep 1.1s ease-in-out; }
+@keyframes sweep {
+  0%   { opacity: 0; transform: translate(-50%, -50%) rotate(0deg); }
+  15%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) rotate(540deg); }
+}
+/* The light stays on at night */
+:root[data-theme="dark"] .lantern { fill: #ffd23f; filter: drop-shadow(0 0 3px #ffd23f); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .lantern { fill: #ffd23f; filter: drop-shadow(0 0 3px #ffd23f); }
 }
 .nav-toggle { display: none; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; position: relative; }
 .nav-toggle span { position: absolute; left: 9px; right: 9px; height: 2px; background: var(--ink); transition: transform .25s; }
@@ -341,4 +374,5 @@ h1, h2, h3 {
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+  .theme-toggle.flash .beam { animation: none; }
 }
